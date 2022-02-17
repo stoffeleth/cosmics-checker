@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+</head>
+<body class="bg-gray-100">
+
+
+    
+    <div class="container mx-auto px-6 my-5">
+        <div class="rounded-md bg-yellow-50 p-4 mb-7">
+            <div class="flex">
+              <div class="flex-shrink-0">
+                <!-- Heroicon name: solid/exclamation -->
+                <svg class="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <div class="ml-3">
+                <h3 class="text-sm font-medium text-yellow-800">Disclaimer – PLEASE READ</h3>
+                <div class="mt-2 text-sm text-yellow-700">
+                  <p>I can't guarantee that this check works 100% of the time. So maybe don't rely on it for financial investments. I won't be responsble for any damages or the world ending.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <div class="bg-white overflow-hidden shadow rounded-lg my-10">
+            <div class="px-4 py-5 sm:p-6 space-y-3">
+                <div>
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">Single ID Check</h3>
+                </div>
+                <div x-data="{mintId: 0}">
+
+                    <div>
+                        <label for="singleMintId" class="block text-sm font-medium text-gray-700"> Paradise Trippies #ID </label>
+                        <div class="mt-1 flex rounded-md shadow-sm">
+                          <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm"> # </span>
+                          <input type="text" name="singleMintId" id="singleMintId" @input.debounce.500ms="fetchSingleMint(mintId)" x-model="mintId" class="flex-1 min-w-0 block w-full px-3 py-2 rounded-none rounded-r-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300" placeholder="www.example.com">
+                        </div>
+                        <p class="mt-2 text-sm text-gray-500" id="email-description">Do NOT prepend zeros. Use #10 and not #00010.</p>
+                    </div>
+
+                    <div id="singleResult" class="mt-5 font-bold text-xl p-5 bg-gray-100 text-black"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container mx-auto px-6">
+        <div class="bg-white overflow-hidden shadow rounded-lg my-10">
+            <div class="px-4 py-5 sm:p-6 space-y-3">
+                <div>
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">Batch Check</h3>
+                    <p class="mt-1 max-w-2xl text-sm text-gray-500">Please don't spam the buttons. Use with care.</p>
+                </div>
+                <span class="relative z-0 inline-flex shadow-sm rounded-md">
+                    <button onclick="fetchMints(1,1000)" class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">1-1000</button>
+                    <button onclick="fetchMints(1000,2000)" class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">1000-2000</button>
+                    <button onclick="fetchMints(2000,3000)" class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">2000-3000</button>
+                    <button onclick="fetchMints(3000,4000)" class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">3000-4000</button>
+                    <button onclick="fetchMints(4000,5000)" class="-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">4000-5000</button>
+                </span>
+                <span class="relative z-0 inline-flex shadow-sm rounded-md">
+                    <button onclick="fetchMints(5000,6000)" class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">5000-6000</button>
+                    <button onclick="fetchMints(6000,7000)" class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">6000-7000</button>
+                    <button onclick="fetchMints(7000,8000)" class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">7000-8000</button>
+                    <button onclick="fetchMints(8000,9000)" class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">8000-9000</button>
+                    <button onclick="fetchMints(9000,10000)" class="-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">9000-10000</button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-6 my-5">
+        <div class="bg-white overflow-hidden shadow rounded-lg my-10">
+            <div id="checks" class="p-6">
+                No Batch Check started
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const currentDiv = document.getElementById("checks");
+        const singleResult = document.getElementById("singleResult");
+
+        function fetchMints(lowerLimit, upperLimit) {
+            currentDiv.innerHTML = "<h1>NOT MINTED:</h1><hr>";
+            for (let i = lowerLimit; i <= upperLimit; i++) {
+                if (!localStorage.getItem(i)) {
+                    fetch(`https://looksrare.org/collections/0xc934e429360e2b55d5BA95751d31D3da1E3410cD/${i}`)
+                    .then((response) => {
+                        if (response.status === 200) {
+                            localStorage.setItem(i, 'MINTED');
+                        } else {
+                            currentDiv.innerHTML += i + ", ";
+                        }
+                    })
+                }
+            }
+        }
+
+        function fetchSingleMint(mintId) {
+            singleResult.innerHTML = "";
+            if (!localStorage.getItem(mintId)) {
+                fetch(`https://looksrare.org/collections/0xc934e429360e2b55d5BA95751d31D3da1E3410cD/${mintId}`)
+                .then((response) => {
+                    if (response.status === 200) {
+                        localStorage.setItem(mintId, 'MINTED');
+                        singleResult.innerHTML += mintId + " is already minted.";
+                    } else {
+                        singleResult.innerHTML += mintId + " is NOT minted.";
+                    }
+                })
+            } else {
+                singleResult.innerHTML += mintId + " is already minted.";
+            }   
+        }
+    </script>
+    
+</body>
+</html>

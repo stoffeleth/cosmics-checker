@@ -60,7 +60,7 @@
             <div class="px-4 py-5 sm:p-6 space-y-3">
                 <div>
                     <h3 class="text-lg leading-6 font-medium text-gray-900">Batch Check</h3>
-                    <p class="mt-1 max-w-2xl text-sm text-gray-500">Please don't spam the buttons. Use with care.</p>
+                    <p class="mt-1 max-w-2xl text-sm text-gray-500">Please don't spam the buttons. Use with care. <b>The results will not be in order, use single search for specific trippies.</b></p>
                 </div>
                 <span class="relative z-0 inline-flex shadow-sm rounded-md">
                     <button onclick="fetchMints(1,1000)" class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">1-1000</button>
@@ -94,7 +94,7 @@
         const singleResult = document.getElementById("singleResult");
 
         function fetchMints(lowerLimit, upperLimit) {
-            currentDiv.innerHTML = "<h1>NOT MINTED:</h1><hr>";
+            currentDiv.innerHTML = "<h1>NOT MINTED (in no particular order):</h1><hr>";
             for (let i = lowerLimit; i <= upperLimit; i++) {
                 if (!localStorage.getItem(i)) {
                     fetch(`https://looksrare.org/collections/0xc934e429360e2b55d5BA95751d31D3da1E3410cD/${i}`)
